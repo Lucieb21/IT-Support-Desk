@@ -1,0 +1,355 @@
+
+/* =================================
+   IT SUPPORT DESK - MAIN DESIGN
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #0f172a, #1e40af);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 5px solid #38bdf8;
+}
+
+header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+header p {
+    color: #dbeafe;
+    font-size: 16px;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 16px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: #1e40af;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #dbeafe;
+    color: #1e3a8a;
+}
+
+/* MAIN CONTENT */
+
+main {
+    width: 92%;
+    max-width: 1100px;
+    margin: 35px auto;
+}
+
+/* SECTIONS */
+
+section {
+    background: white;
+    padding: 28px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.06);
+}
+
+section h2 {
+    color: #1e3a8a;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+section h3 {
+    color: #1e40af;
+    margin: 22px 0 15px;
+}
+
+/* FORM */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: 600;
+    color: #334155;
+    margin-top: 8px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #f8fafc;
+    color: #1e293b;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    background: white;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* BUTTONS */
+
+button {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+#submit-button {
+    background: #1e40af;
+    color: white;
+    margin-top: 12px;
+}
+
+#submit-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+#cancel-edit {
+    background: #64748b;
+    color: white;
+}
+
+#cancel-edit:hover {
+    background: #475569;
+}
+
+.record-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.view-button {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.view-button:hover {
+    background: #bae6fd;
+}
+
+.edit-button {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.edit-button:hover {
+    background: #fde68a;
+}
+
+.delete-button {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.delete-button:hover {
+    background: #fecaca;
+}
+
+/* SEARCH AND FILTER */
+
+.filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+#record-count {
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+/* RECORD CARDS */
+
+#records-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+.record-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #2563eb;
+    border-radius: 12px;
+    padding: 20px;
+    transition: 0.25s;
+}
+
+.record-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.09);
+}
+
+.record-card h3 {
+    color: #1e3a8a;
+    font-size: 17px;
+    margin: 0 0 12px;
+}
+
+.record-card p {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+/* MESSAGES */
+
+#message {
+    padding: 0;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+#message.success,
+#message.error {
+    padding: 12px 15px;
+}
+
+#message.success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+#message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.empty-message {
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* DIVIDER */
+
+hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 28px 0;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0f172a;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 640px) {
+
+    header {
+        padding: 30px 15px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    nav {
+        gap: 5px;
+        flex-wrap: wrap;
+        padding: 12px 5px;
+    }
+
+    nav a {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    section h2 {
+        font-size: 21px;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    #records-container {
+        grid-template-columns: 1fr;
+    }
+
+    .record-actions button {
+        flex: 1;
+    }
+}
