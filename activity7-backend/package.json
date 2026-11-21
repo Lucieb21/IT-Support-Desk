@@ -1,0 +1,14 @@
+
+{
+  "name": "it-support-desk-backend",
+  "version": "1.0.0",
+  "description": "ICT251 IT Support Desk Backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
