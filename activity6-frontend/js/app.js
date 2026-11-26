@@ -19,6 +19,7 @@ const cancelButton = document.getElementById("cancel-edit");
 const formHeading = document.getElementById("form-heading");
 
 let editingId = null;
+const originalButtonText = submitButton.textContent;
 
 // Display messages
 function showMessage(text, type = "success") {
@@ -167,6 +168,9 @@ function createRecordCard(record) {
 
 // Display records
 async function renderRecords() {
+    recordsContainer.replaceChildren();
+    recordCount.textContent = "Loading records...";
+
     const allRecords = await recordService.list();
 
     const searchText = searchInput.value.trim().toLowerCase();
@@ -174,17 +178,13 @@ async function renderRecords() {
 
     const filteredRecords = allRecords.filter(record => {
         const matchesSearch = record.title.toLowerCase().includes(searchText);
-
         const matchesStatus =
             selectedStatus === "" || record.status === selectedStatus;
 
         return matchesSearch && matchesStatus;
     });
 
-    recordsContainer.replaceChildren();
-
-    recordCount.textContent =
-        `${filteredRecords.length} record(s) found`;
+    recordCount.textContent = `${filteredRecords.length} record(s) found`;
 
     if (filteredRecords.length === 0) {
         const empty = createTextElement(
@@ -205,7 +205,7 @@ async function renderRecords() {
 }
 
 // Handle form submission
-form.addEventListener("submit", async (event) => {
+form.addEventListener("submit", async event => {
     event.preventDefault();
 
     const record = {
@@ -222,6 +222,8 @@ form.addEventListener("submit", async (event) => {
         return;
     }
 
+    submitButton.disabled = true;
+
     try {
         if (editingId !== null) {
             await recordService.update(editingId, record);
@@ -236,6 +238,11 @@ form.addEventListener("submit", async (event) => {
 
     } catch (error) {
         showMessage(error.message, "error");
+
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent =
+            editingId !== null ? "Update Request" : originalButtonText;
     }
 });
 
@@ -246,10 +253,18 @@ cancelButton.addEventListener("click", () => {
 });
 
 // Search
-searchInput.addEventListener("input", renderRecords);
+searchInput.addEventListener("input", () => {
+    renderRecords().catch(error => {
+        showMessage("Unable to load records: " + error.message, "error");
+    });
+});
 
 // Filter
-filterStatus.addEventListener("change", renderRecords);
+filterStatus.addEventListener("change", () => {
+    renderRecords().catch(error => {
+        showMessage("Unable to load records: " + error.message, "error");
+    });
+});
 
 // Load records when the page opens
 renderRecords().catch(error => {
